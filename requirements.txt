@@ -5,5 +5,5 @@ python-dotenv
 sqlalchemy
 asyncpg
 passlib[bcrypt]
-
+PyJWT
 
