@@ -21,4 +21,4 @@ async def get_context(request: Request) -> dict:
     return {"request": request, "user": user}
 
 graphql_app = GraphQLRouter(schema, context_getter=get_context)
-app.include_router(graphql_app, prefix="/airport")
+app.include_router(graphql_app, prefix="/api/airport")
