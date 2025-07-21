@@ -1,6 +1,6 @@
 import asyncio
 from app.db.database import engine, Base
-from app.models.models import Airport  # importa todos los modelos explícitamente
+from app.models.models import Airport  
 
 async def create_tables():
     async with engine.begin() as conn:

@@ -1,4 +1,4 @@
-# app/auth/dependencies.py
+
 from fastapi import Request, HTTPException
 import jwt
 from jwt import ExpiredSignatureError, InvalidTokenError

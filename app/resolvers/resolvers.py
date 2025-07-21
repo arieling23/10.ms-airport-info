@@ -7,26 +7,26 @@ from app.db.database import get_session
 from app.services.airport_service import AirportService
 from app.utils.logger import logger
 
-# ✅ Tipo de salida GraphQL con camelCase
+
 @strawberry.type
 class AirportType:
     id: int
     name: str
     city: str
     country: str
-    iataCode: str  # ← corregido
+    iataCode: str  
 
-# ✅ Función para convertir modelo SQLAlchemy a tipo GraphQL
+
 def to_airport_type(airport) -> AirportType:
     return AirportType(
         id=airport.id,
         name=airport.name,
         city=airport.city,
         country=airport.country,
-        iataCode=airport.iata_code  # ← corregido
+        iataCode=airport.iata_code  
     )
 
-# ✅ Queries
+
 @strawberry.type
 class Query:
 
@@ -48,18 +48,18 @@ class Query:
         logger.debug(f"Se recuperaron {len(data)} aeropuertos desde la base de datos.")
         return [to_airport_type(a) for a in data]
 
-# ✅ Mutations
+
 @strawberry.type
 class Mutation:
 
     @strawberry.mutation
-    async def createAirport(  # ← nombre con PascalCase para cumplir estándar GraphQL
+    async def createAirport( 
         self,
         info,
         name: str,
         city: str,
         country: str,
-        iataCode: str,  # ← corregido
+        iataCode: str, 
     ) -> AirportType:
         user = info.context.get("user")
         logger.info(f"Usuario {user.get('sub')} está intentando crear un aeropuerto.")
@@ -71,7 +71,7 @@ class Mutation:
             "name": name,
             "city": city,
             "country": country,
-            "iata_code": iataCode,  # ← mapeo correcto a SQLAlchemy
+            "iata_code": iataCode,  
         })
 
         logger.info(f"Aeropuerto '{name}' creado exitosamente por {user.get('sub')}.")
